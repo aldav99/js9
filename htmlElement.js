@@ -6,6 +6,7 @@ class HtmlElement {
         this._template;
         this._fillTemplate;
         this._styles;
+        this._element;
         this._unrender = unrenderStr || "new";
     }
 
@@ -94,6 +95,8 @@ class HtmlElement {
 
         insertElement.textContent = this._fillTemplate;
 
+        this._element = insertElement;
+
         switch (this._render) {
             case "append":
                 this._target.append(insertElement);
@@ -108,23 +111,27 @@ class HtmlElement {
     }
 
     unrender() {
-        let elementsDelete = document.getElementsByClassName(this._unrender);
-        elementsDelete[0].remove();
+        // let elementsDelete = document.getElementsByClassName(this._unrender);
+        // elementsDelete[0].remove();
+        this._element.remove();
     }
 }
 
 class Input extends HtmlElement {
     set onFocus(func) {
-        let elementFocusable = document.getElementsByClassName(this._unrender);
-        let element = elementFocusable[0];
-        element.tabIndex = 1;
-        element.onfocus = func;
+        // let elementFocusable = document.getElementsByClassName(this._unrender);
+        // let element = elementFocusable[0];
+        // element.tabIndex = 1;
+        // element.onfocus = func;
+        this._element.tabIndex = 1;
+        this._element.onfocus = func;
     }
 
     set onInput(func) {
-        let elementInputable = document.getElementsByClassName(this._unrender);
-        let element = elementInputable[0];
-        element.oninput = func;
+        // let elementInputable = document.getElementsByClassName(this._unrender);
+        // let element = elementInputable[0];
+        // element.oninput = func;
+        this._element.oninput = func;
     }
 }
 
